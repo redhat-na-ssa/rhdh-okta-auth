@@ -1,0 +1,35 @@
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakClient
+metadata:
+  resourceVersion: '1651238'
+  name: rhdh
+  namespace: rhsso
+  finalizers:
+    - client.cleanup
+  labels:
+    app: backstage
+spec:
+  client:
+    clientAuthenticatorType: client-secret
+    redirectUris:
+      - 'https://developer-hub-rhdh.apps.cluster-z92ss.z92ss.sandbox932.opentlc.com/oauth2/callback'
+    serviceAccountsEnabled: true
+    clientId: backstage
+    defaultClientScopes:
+      - email
+      - profile
+      - roles
+    implicitFlowEnabled: false
+    publicClient: false
+    standardFlowEnabled: true
+    id: 5d25ec6b-9b09-48db-95a9-a8caec9bff58
+    directAccessGrantsEnabled: true
+  realmSelector:
+    matchLabels:
+      app: backstage
+  scopeMappings: {}
+  serviceAccountClientRoles:
+    realm-management:
+      - query-groups
+      - query-users
+      - view-users

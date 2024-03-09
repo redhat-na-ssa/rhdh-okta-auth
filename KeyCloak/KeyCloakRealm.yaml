@@ -1,0 +1,37 @@
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakRealm
+metadata:
+  name: rhdh-bitbucket
+  namespace: rhsso
+  finalizers:
+    - realm.cleanup
+  labels:
+    app: backstage
+spec:
+  instanceSelector:
+    matchLabels:
+      app: sso
+  realm:
+    displayName: Bitbucket Authentication Realm
+    enabled: true
+    id: rhdh
+    identityProviders:
+      - enabled: true
+        config:
+          clientId: <<CLIENT ID FROM OAUTH CONSUMER>>
+          clientSecret: <<CLIENT SECRET FROM OAUTH CONSUMER>>
+          syncMode: IMPORT
+          useJwksUrl: 'true'
+        firstBrokerLoginFlowAlias: first broker login
+        trustEmail: false
+        linkOnly: false
+        providerId: bitbucket
+        alias: bitbucket
+        addReadTokenRoleOnCreate: false
+        storeToken: false
+    realm: backstage
+status:
+  loginURL: ''
+  message: ''
+  phase: reconciling
+  ready: true

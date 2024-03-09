@@ -1,0 +1,3 @@
+# Bitbucket Authentication
+
+## Bitbucket settings.
