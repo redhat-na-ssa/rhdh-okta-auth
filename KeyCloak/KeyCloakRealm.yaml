@@ -18,8 +18,8 @@ spec:
     identityProviders:
       - enabled: true
         config:
-          clientId: <<CLIENT ID FROM OAUTH CONSUMER>>
-          clientSecret: <<CLIENT SECRET FROM OAUTH CONSUMER>>
+          clientId: <<CLIENT ID FROM BITBUCKET OAUTH CONSUMER>>
+          clientSecret: <<CLIENT SECRET FROM BITBUCKET OAUTH CONSUMER>>
           syncMode: IMPORT
           useJwksUrl: 'true'
         firstBrokerLoginFlowAlias: first broker login

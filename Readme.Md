@@ -27,3 +27,18 @@ Create an Oauth Consumer set the following
 2) Under Permissions enable Account Email,Read checkbox.
 
 ![Alt text](./docs/assets/bitbucket-consumer-details.png "OAuth Consumer Detail")
+
+
+## KeyCloak Realm/client config
+
+Replace the clientid and client secret in the file `KeyCloakRealm.yaml`
+
+```
+   oc apply -f ./KeyCloak/KeyCloakRealm.yaml
+```
+
+Create KeyCloak Client
+
+```
+   oc apply -f ./KeyCloak/KeyCloakClient.yaml
+```
