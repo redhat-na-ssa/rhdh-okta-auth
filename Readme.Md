@@ -50,8 +50,8 @@ Create a secret named `keycloak-client-secret-rhdh` refer `./RHDH/keycloak-clien
 
 ## Oauth2 container config 
 
-[!NOTE]
-   Please refer ./RHDH/rhdh-helm-values.yaml for these changes
+>[!NOTE]
+>Please refer ./RHDH/rhdh-helm-values.yaml for these changes
 
 In order to add Oauth2-proxy to developer hub while installing helm charts add the followin to values.yaml `extraContainers` replace `<<KeyCloakroute>>` below with Keycloak route before adding this to values.yaml
 
