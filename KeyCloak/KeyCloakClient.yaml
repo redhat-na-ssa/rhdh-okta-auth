@@ -12,7 +12,7 @@ spec:
   client:
     clientAuthenticatorType: client-secret
     redirectUris:
-      - 'https://developer-hub-rhdh.apps.cluster-z92ss.z92ss.sandbox932.opentlc.com/oauth2/callback'
+      - '<<Developer-HUB-Route>>/oauth2/callback'
     serviceAccountsEnabled: true
     clientId: backstage
     defaultClientScopes:

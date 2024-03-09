@@ -38,6 +38,8 @@ Replace the clientid and client secret in the file `KeyCloakRealm.yaml` before c
 
 Create KeyCloak Client
 
+Replace the `<<Developer-HUB-Route>>` in KeyCloakClient.yaml file before executing this.
+
 ```
    oc apply -f ./KeyCloak/KeyCloakClient.yaml
 ```
