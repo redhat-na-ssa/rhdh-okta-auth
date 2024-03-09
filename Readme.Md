@@ -187,4 +187,4 @@ service:
   ![Alt text](./docs/assets/UserlistAfterAuthentication.png "User List in KeyCloak")
 
    ### RHDH
-  ![Alt text](./docs/assets/UserSyncinRHDH.png.png "User List in RHDH")
+  ![Alt text](./docs/assets/UserSyncinRHDH.png "User List in RHDH")
