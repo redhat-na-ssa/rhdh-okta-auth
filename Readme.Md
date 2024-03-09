@@ -4,4 +4,6 @@ Backstage provides an authentication provider for bitbucket authentication which
 
 The workaround is to use Oauth2Proxy -> KeyCloak to federate this as OIDC provider with identity provider as Bitbucket.
 
+![Alt text](./docs/assets/bitbucket-rhdh.png?raw=true "Logical Architecture")
+
 ## Bitbucket settings.
