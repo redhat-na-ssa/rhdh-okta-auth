@@ -2,7 +2,7 @@
 
 Backstage provides an authentication provider (https://backstage.io/docs/auth/bitbucket/provider) for bitbucket authentication which can be directly configured with app-config.yaml but it will result in ```User not found ``` error as the user entity is not getting created by this.
 
-The workaround is to use Oauth2Proxy -> KeyCloak to federate this as OIDC provider with identity provider as Bitbucket. The Oauth2-proxy will be added as an additional container running along devhub container in devhub pod. This proxy uses keycloak to federate the authentication and keycloak uses bitbucket as the identity provider.The Keycloak plugin is also used in this architecture to sync up all the users in Bitbucket to RHDH.
+The workaround is to use Oauth2Proxy -> KeyCloak to federate this as OIDC provider with identity provider as Bitbucket. The Oauth2-proxy will be added as an additional container running along devhub container in devhub pod. This proxy uses keycloak to federate the authentication and keycloak uses bitbucket as the identity provider. The Keycloak plugin is also used in this architecture to sync up all the users in Bitbucket to RHDH.
 
 ![Alt text](./docs/assets/bitbucket-rhdh.png?raw=true "Logical Architecture")
 
