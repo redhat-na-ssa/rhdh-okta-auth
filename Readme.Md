@@ -17,7 +17,7 @@ Install the RHSSO operator on Openshift Once the Operator is installed create a 
 
 ## Bitbucket settings.
 
-Setup OAUTH Consumer for Key Cloak. open URL : https://bitbucket.org/<<orgname>>/workspace/settings/api
+Setup OAUTH Consumer for Key Cloak. open URL : https://bitbucket.org/< Org name >/workspace/settings/api
 
 ![Alt text](./docs/assets/Bitbucket-oauthconsumer.png "OAuth Consumer")
 
