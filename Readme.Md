@@ -6,7 +6,7 @@ The workaround is to use Oauth2Proxy -> KeyCloak to federate this as OIDC provid
 
 ![Alt text](./docs/assets/bitbucket-rhdh.png?raw=true "Logical Architecture")
 
-## Bitbucket settings.
+## Bitbucket settings
 
 Setup OAUTH Consumer for Key Cloak. open URL : https://bitbucket.org/< Org name >/workspace/settings/api
 
@@ -41,3 +41,43 @@ Create KeyCloak Client
 ```
    oc apply -f ./KeyCloak/KeyCloakClient.yaml
 ```
+
+# Oauth2-proxy config
+
+In order to add Oauth2-proxy to developer hub while installing helm charts in the place holder of `ExtraContainers`
+
+``` 
+  extraContainers:
+      - args:
+          - '--provider=oidc'
+          - '--email-domain=*'
+          - '--upstream=http://localhost:7007'
+          - '--http-address=0.0.0.0:4180'
+          - '--skip-provider-button'
+          - '--insecure-oidc-allow-unverified-email=true'
+        env:
+          - name: OAUTH2_PROXY_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                key: KEYCLOAK_CLIENT_ID
+                name: keycloak-client-secret-rhdh
+          - name: OAUTH2_PROXY_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: KEYCLOAK_CLIENT_SECRET
+                name: keycloak-client-secret-rhdh
+          - name: OAUTH2_PROXY_COOKIE_SECRET
+            value: '{{ randAlpha 32 | lower | b64enc }}'
+          - name: OAUTH2_PROXY_OIDC_ISSUER_URL
+            value: >-
+              <<KeyCloakroute>>/auth/realms/backstage
+          - name: OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY
+            value: 'true'
+        image: 'quay.io/oauth2-proxy/oauth2-proxy:latest'
+        imagePullPolicy: IfNotPresent
+        name: oauth2-proxy
+        ports:
+          - containerPort: 4180
+            name: oauth2-proxy
+            protocol: TCP
+```            
