@@ -14,7 +14,7 @@ Setup OAUTH Consumer for Key Cloak. open URL : https://bitbucket.org/< Org name 
 
 Create an Oauth Consumer set the following
 
-1) Callback URL : <<KeyCloak_Route_URL>>/auth/realms/<<realmname>>/broker/bitbucket/endpoint
+1) Callback URL : <<KeyCloak_Route_URL>>/auth/realms/< realmname >/broker/bitbucket/endpoint
 2) Under Permissions enable Account Email,Read checkbox.
 
 ![Alt text](./docs/assets/bitbucket-consumer-details.png "OAuth Consumer Detail")
