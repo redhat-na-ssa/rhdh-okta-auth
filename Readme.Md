@@ -6,15 +6,6 @@ The workaround is to use Oauth2Proxy -> KeyCloak to federate this as OIDC provid
 
 ![Alt text](./docs/assets/bitbucket-rhdh.png?raw=true "Logical Architecture")
 
-## KeyCloak
-
-Install the RHSSO operator on Openshift Once the Operator is installed create a key cloak instance, realm , client
-
-```
-  oc apply -f ./KeyCloak/KeyCloak.yaml
-```
-
-
 ## Bitbucket settings.
 
 Setup OAUTH Consumer for Key Cloak. open URL : https://bitbucket.org/< Org name >/workspace/settings/api
@@ -29,9 +20,17 @@ Create an Oauth Consumer set the following
 ![Alt text](./docs/assets/bitbucket-consumer-details.png "OAuth Consumer Detail")
 
 
-## KeyCloak Realm/client config
+## KeyCloak
 
-Replace the clientid and client secret in the file `KeyCloakRealm.yaml`
+Install the RHSSO operator on Openshift Once the Operator is installed create a key cloak instance, realm , client
+
+```
+  oc apply -f ./KeyCloak/KeyCloak.yaml
+```
+
+### KeyCloak Realm/client config
+
+Replace the clientid and client secret in the file `KeyCloakRealm.yaml` before creating the realm
 
 ```
    oc apply -f ./KeyCloak/KeyCloakRealm.yaml
