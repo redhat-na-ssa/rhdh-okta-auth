@@ -95,6 +95,9 @@ In order to add Oauth2-proxy to developer hub while installing helm charts add t
 
 RHDH Service needs to point to Oauth2-proxy instead of developer hub container In Order to acheieve this update the following in values.yaml of RHDH helm chart.
 
+>[!NOTE]
+>Please refer ./RHDH/rhdh-helm-values.yaml for these changes
+
 ```
 service:
     externalTrafficPolicy: Cluster
