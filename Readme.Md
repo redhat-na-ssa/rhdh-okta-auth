@@ -156,31 +156,35 @@ service:
   Add the following config to RHDH app config.yaml
 
   >[!NOTE]
-  >Please refer ./RHDH/rhdh-helm-values.yaml for these changes
+  >Please refer ./RHDH/app-config.yaml for these changes
 
   ```
     catalog:
-    providers:
-        keycloakOrg:
-        default:
-            baseUrl: ${KEYCLOAK_BASE_URL}
-            realm: ${KEYCLOAK_REALM}
-            loginRealm: ${KEYCLOAK_REALM}
-            clientId: ${KEYCLOAK_CLIENT_ID}
-            clientSecret: ${KEYCLOAK_CLIENT_SECRET}
-            userQuerySize: 250
-            groupQuerySize: 250
-            schedule: # optional; same options as in TaskScheduleDefinition
-            # supports cron, ISO duration, "human duration" as used in code
-            frequency: { minutes: 1 }
-            # supports ISO duration, "human duration" as used in code
-            timeout: { minutes: 1 }
-            initialDelay: { seconds: 15 }
+        providers:
+            keycloakOrg:
+                default:
+                    baseUrl: ${KEYCLOAK_BASE_URL}
+                    realm: ${KEYCLOAK_REALM}
+                    loginRealm: ${KEYCLOAK_REALM}
+                    clientId: ${KEYCLOAK_CLIENT_ID}
+                    clientSecret: ${KEYCLOAK_CLIENT_SECRET}
+                    userQuerySize: 250
+                    groupQuerySize: 250
+                    schedule: # optional; same options as in TaskScheduleDefinition
+                    # supports cron, ISO duration, "human duration" as used in code
+                    frequency: { minutes: 1 }
+                    # supports ISO duration, "human duration" as used in code
+                    timeout: { minutes: 1 }
+                    initialDelay: { seconds: 15 }
     rules:
         - allow: [Component, Group, User, Resource, Location, Template]
   ```   
 
-  ### Screenshots to see service account client role mapping and user list
+  ## Screenshots to see service account client role mapping and user list
 
+   ### KeyCloak
   ![Alt text](./docs/assets/ServiceAccount-ClientRoleMappings.png "Service Account Client Role Mapping")
-  ![Alt text](./docs/assets/UserlistAfterAuthentication.png "Service Account Client Role Mapping")
+  ![Alt text](./docs/assets/UserlistAfterAuthentication.png "User List in KeyCloak")
+
+   ### RHDH
+  ![Alt text](./docs/assets/UserSyncinRHDH.png.png "User List in RHDH")
