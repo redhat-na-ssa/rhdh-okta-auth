@@ -44,6 +44,10 @@ Create KeyCloak Client
 
 # Oauth2-proxy config
 
+Prerequesite:
+
+Create a secret named `keycloak-client-secret-rhdh` refer `./RHDH/keycloak-client-secret-rhdh.yaml` replace all the values. This secret is referred by Oauth2-proxy container and RHDH container
+
 In order to add Oauth2-proxy to developer hub while installing helm charts in the place holder of `ExtraContainers`
 
 ``` 
