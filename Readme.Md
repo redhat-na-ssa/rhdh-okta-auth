@@ -108,3 +108,67 @@ service:
     sessionAffinity: None
     type: ClusterIP
 ```    
+
+### Configure auth with OIDC
+
+ Add the following to app-config yaml for authentication
+
+ >[!NOTE]
+  >Please refer ./RHDH/app-config.yaml for these changes
+
+  ```
+        auth:
+            environment: development
+            providers:
+                oauth2Proxy: {}
+    
+        signInPage: oauth2Proxy
+  ```
+
+# KeyCloak Users/Group Sync
+
+  ## Enabling Keycloak plugin
+
+  KeyCloak Plugin needs to be enabled for RHDH to sync users/groups to RHDH User Entity. To enable KeyCloak Plugin add the following in values.yaml of helm chart
+
+  >[!NOTE]
+  >Please refer ./RHDH/app-config.yaml for these changes
+
+  ```
+  dynamic:
+    includes:
+      - dynamic-plugins.default.yaml
+    plugins:
+      - disabled: false
+        package: >-
+          ./dynamic-plugins/dist/janus-idp-backstage-plugin-keycloak-backend-dynamic
+  ```
+
+  ## Setup User Sync     
+  
+  Add the following config to RHDH app config.yaml
+
+  >[!NOTE]
+  >Please refer ./RHDH/rhdh-helm-values.yaml for these changes
+
+  ```
+    catalog:
+    providers:
+        keycloakOrg:
+        default:
+            baseUrl: ${KEYCLOAK_BASE_URL}
+            realm: ${KEYCLOAK_REALM}
+            loginRealm: ${KEYCLOAK_REALM}
+            clientId: ${KEYCLOAK_CLIENT_ID}
+            clientSecret: ${KEYCLOAK_CLIENT_SECRET}
+            userQuerySize: 250
+            groupQuerySize: 250
+            schedule: # optional; same options as in TaskScheduleDefinition
+            # supports cron, ISO duration, "human duration" as used in code
+            frequency: { minutes: 1 }
+            # supports ISO duration, "human duration" as used in code
+            timeout: { minutes: 1 }
+            initialDelay: { seconds: 15 }
+    rules:
+        - allow: [Component, Group, User, Resource, Location, Template]
+  ```   
