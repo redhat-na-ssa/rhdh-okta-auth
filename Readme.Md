@@ -44,6 +44,11 @@ Replace the `<<Developer-HUB-Route>>` in KeyCloakClient.yaml file before executi
    oc apply -f ./KeyCloak/KeyCloakClient.yaml
 ```
 
+### Some Keycloak Screen shots to verify config.
+
+![Alt text](./docs/assets/KeyCloakClient.png "KeyCloak Client")
+![Alt text](./docs/assets/Bitbucket-IdentityProvider.png "Identity Provider")
+
 # Oauth2-proxy config
 
 ## Prerequisite:
@@ -174,3 +179,8 @@ service:
     rules:
         - allow: [Component, Group, User, Resource, Location, Template]
   ```   
+
+  ### Screenshots to see service account client role mapping and user list
+
+  ![Alt text](./docs/assets/ServiceAccount-ClientRoleMappings.png "Service Account Client Role Mapping")
+  ![Alt text](./docs/assets/UserlistAfterAuthentication.png "Service Account Client Role Mapping")
