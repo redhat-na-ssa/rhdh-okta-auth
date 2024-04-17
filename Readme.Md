@@ -42,6 +42,11 @@ Setup App Integration Consumer for Key Cloak It needs some prior info from KeyCl
 
 # Resume KeyCloak Settings
 
+## Update Identity Provider OIDC config info. 
+
+  We need to update Authorization URL,Token URL,Logout URL
+  ![Alt text](./docs/assets/KeyCloakOpenIDConfig.png "OIDC Detail")
+
 ## Create KeyCloak Client
 
 Replace the `<<Developer-HUB-Route>>` in KeyCloakClient.yaml file before executing this.
