@@ -1,16 +1,17 @@
-# RHDH - Bitbucket Authentication 
+# RHDH - OKTA Authentication 
 
-Backstage provides an authentication provider (https://backstage.io/docs/auth/bitbucket/provider) for bitbucket authentication which can be directly configured with app-config.yaml but it will result in ```User not found ``` error as the user entity is not getting created by this.
+Backstage provides an authentication provider (https://backstage.io/docs/auth/bitbucket/provider) for OKTA authentication which can be directly configured with app-config.yaml but it will result in ```User not found ``` error as the user entity is not getting created by this.
 
-The workaround is to use Oauth2Proxy -> KeyCloak to federate this as OIDC provider with identity provider as Bitbucket. The Oauth2-proxy will be added as an additional container running along devhub container in devhub pod. This proxy uses keycloak to federate the authentication and keycloak uses bitbucket as the identity provider. The Keycloak plugin is also used in this architecture to sync up all the users in Bitbucket to RHDH.
+The workaround is to use Oauth2Proxy -> KeyCloak to federate this as OIDC provider with identity provider as Okta. The Oauth2-proxy will be added as an additional container running along devhub container in devhub pod. This proxy uses keycloak to federate the authentication and keycloak uses Okta as the identity provider. The Keycloak plugin is also used in this architecture to sync up all the users in Okta to RHDH.
 
 ![Alt text](./docs/assets/bitbucket-rhdh.png?raw=true "Logical Architecture")
 
-## Bitbucket settings
+## Okta settings
 
-Setup OAUTH Consumer for Key Cloak. open URL : https://bitbucket.org/< Org name >/workspace/settings/api
+Setup App Integration Consumer for Key Cloak. 
 
-![Alt text](./docs/assets/Bitbucket-oauthconsumer.png "OAuth Consumer")
+# Create New App Integration select type as "OIDC" 
+![Alt text](./docs/assets/CreateNewAppIntegration.png "OAuth Consumer")
 
 Create an Oauth Consumer set the following
 
