@@ -73,7 +73,6 @@ Replace the `<<Developer-HUB-Route>>` in KeyCloakClient.yaml file before executi
 ### Some Keycloak Screen shots to verify config.
 
 ![Alt text](./docs/assets/KeyCloakClient.png "KeyCloak Client")
-![Alt text](./docs/assets/Bitbucket-IdentityProvider.png "Identity Provider")
 
 # Oauth2-proxy config
 
