@@ -56,7 +56,8 @@ Setup App Integration Consumer for Key Cloak It needs some prior info from KeyCl
     We can get ClientId,ClientSecret from Okta App Integration.
   
   >[!NOTE]
-  > To get the values for this we need to access this URL from Okta : https://<<< "Okta account URL" >>>/oauth2/default/.well-known/openid-configuration?client_id=<Application Client ID>
+  > To get the values for these URL , we need to access this URL from Okta : 
+      ** https://<<< "Okta account URL" >>>/oauth2/default/.well-known/openid-configuration?client_id=<Application Client ID> **
 
   this provides a json file as response which has values for all these.
 
