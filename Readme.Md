@@ -46,7 +46,8 @@ Setup App Integration Consumer for Key Cloak It needs some prior info from KeyCl
 
   We need to update Authorization URL,Token URL,Logout URL
   
-  To get the values for this we need to access this URL from Okta : https://<Okta account URL>/oauth2/default/.well-known/openid-configuration?client_id=<Application Client ID>
+  >[!NOTE]
+  >To get the values for this we need to access this URL from Okta : https://<Okta account URL>/oauth2/default/.well-known/openid-configuration?client_id=<Application Client ID>
 
   this provides a json file as response which has values for all these.
 
