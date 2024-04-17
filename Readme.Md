@@ -118,7 +118,7 @@ service:
 
 ### Configure auth with OIDC
 
- Add the following to app-config yaml for authentication
+ Add the following to app-config-rhdh yaml for authentication
 
  >[!NOTE]
   >Please refer ./RHDH/app-config.yaml for these changes

@@ -3,7 +3,7 @@ kind: KeycloakClient
 metadata:
   resourceVersion: '1651238'
   name: rhdh
-  namespace: rhsso
+  namespace: rh-sso
   finalizers:
     - client.cleanup
   labels:
@@ -12,7 +12,7 @@ spec:
   client:
     clientAuthenticatorType: client-secret
     redirectUris:
-      - '<<Developer-HUB-Route>>/oauth2/callback'
+      - 'https://redhat-developer-hub-rhdh-elevance-dev.apps.rosa-b2xfj.oxnh.p1.openshiftapps.com/oauth2/callback'
     serviceAccountsEnabled: true
     clientId: backstage
     defaultClientScopes:

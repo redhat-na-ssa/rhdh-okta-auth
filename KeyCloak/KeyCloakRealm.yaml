@@ -1,8 +1,8 @@
 apiVersion: keycloak.org/v1alpha1
 kind: KeycloakRealm
 metadata:
-  name: rhdh-bitbucket
-  namespace: rhsso
+  name: rhdh-okta
+  namespace: rh-sso
   finalizers:
     - realm.cleanup
   labels:
@@ -12,7 +12,7 @@ spec:
     matchLabels:
       app: sso
   realm:
-    displayName: Bitbucket Authentication Realm
+    displayName: Okta Authentication Realm
     enabled: true
     id: rhdh
     identityProviders:

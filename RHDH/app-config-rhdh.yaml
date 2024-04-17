@@ -24,12 +24,7 @@ catalog:
            timeout: { minutes: 1 }
            initialDelay: { seconds: 15 }
   rules:
-     - allow: [Component, Group, User, Resource, Location, Template]
-    
-integrations:
-  bitbucketCloud:
-    - username: ${BITBUCKET_CLOUD_USERNAME}
-      appPassword: ${BITBUCKET_CLOUD_PASSWORD}      
+     - allow: [Component, Group, User, Resource, Location, Template]     
 
 enabled:
   keycloak: true 

@@ -6,12 +6,6 @@ global:
   dynamic:
     includes:
       - dynamic-plugins.default.yaml
-    plugins:
-      - disabled: false
-        package: ./dynamic-plugins/dist/backstage-plugin-tech-radar
-      - disabled: false
-        package: >-
-          ./dynamic-plugins/dist/janus-idp-backstage-plugin-keycloak-backend-dynamic
 route:
   enabled: true
   host: '{{ .Values.global.host }}'
@@ -32,68 +26,16 @@ upstream:
             - secret: '${BACKEND_SECRET}'
         baseUrl: 'https://{{- include "janus-idp.hostname" . }}'
         cors:
-          credentials: true
-          methods:
-            - GET
-            - POST
-            - PUT
-            - DELETE
           origin: 'https://{{- include "janus-idp.hostname" . }}'
-        csp:
-          connect-src:
-            - '''self'''
-            - 'http:'
-            - 'https:'
         database:
           connection:
             password: '${POSTGRESQL_ADMIN_PASSWORD}'
             user: postgres
-        listen:
-          host: 0.0.0.0
-          port: 7007
     args:
       - '--config'
       - dynamic-plugins-root/app-config.dynamic-plugins.yaml
-      - '--config '
-      - app-config.yaml
     containerPorts:
       backend: 7007
-    extraAppConfig:
-      - configMapRef: app-config-rhdh
-        filename: app-config-rhdh.yaml
-    extraContainers:
-      - args:
-          - '--provider=oidc'
-          - '--email-domain=*'
-          - '--upstream=http://localhost:7007'
-          - '--http-address=0.0.0.0:4180'
-          - '--skip-provider-button'
-          - '--insecure-oidc-allow-unverified-email=true'
-        env:
-          - name: OAUTH2_PROXY_CLIENT_ID
-            valueFrom:
-              secretKeyRef:
-                key: KEYCLOAK_CLIENT_ID
-                name: keycloak-client-secret-rhdh
-          - name: OAUTH2_PROXY_CLIENT_SECRET
-            valueFrom:
-              secretKeyRef:
-                key: KEYCLOAK_CLIENT_SECRET
-                name: keycloak-client-secret-rhdh
-          - name: OAUTH2_PROXY_COOKIE_SECRET
-            value: '{{ randAlpha 32 | lower | b64enc }}'
-          - name: OAUTH2_PROXY_OIDC_ISSUER_URL
-            value: >-
-              https://keycloak-rh-sso.apps.rosa-b2xfj.oxnh.p1.openshiftapps.com/auth/realms/backstage
-          - name: OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY
-            value: 'true'
-        image: 'quay.io/oauth2-proxy/oauth2-proxy:latest'
-        imagePullPolicy: IfNotPresent
-        name: oauth2-proxy
-        ports:
-          - containerPort: 4180
-            name: oauth2-proxy
-            protocol: TCP
     extraEnvVars:
       - name: BACKEND_SECRET
         valueFrom:
@@ -105,20 +47,6 @@ upstream:
           secretKeyRef:
             key: postgres-password
             name: '{{- include "janus-idp.postgresql.secretName" . }}'
-      - name: LOG_LEVEL
-        value: debug
-      - name: APP_CONFIG_app_baseUrl
-        value: >-
-         https://redhat-developer-hub-rhdh-elevance-dev.apps.rosa-b2xfj.oxnh.p1.openshiftapps.com
-      - name: APP_CONFIG_backend_baseUrl
-        value: >-
-         https://redhat-developer-hub-rhdh-elevance-dev.apps.rosa-b2xfj.oxnh.p1.openshiftapps.com
-      - name: APP_CONFIG_backend_cors_origin
-        value: >-
-         https://redhat-developer-hub-rhdh-elevance-dev.apps.rosa-b2xfj.oxnh.p1.openshiftapps.com
-    extraEnvVarsSecrets:
-      - rhdh-secrets
-      - keycloak-client-secret-rhdh
     extraVolumeMounts:
       - mountPath: /opt/app-root/src/dynamic-plugins-root
         name: dynamic-plugins-root
@@ -173,11 +101,11 @@ upstream:
         workingDir: /opt/app-root/src
     installDir: /opt/app-root/src
     livenessProbe:
-      failureThreshold: 3
       httpGet:
         path: /healthcheck
         port: 7007
         scheme: HTTP
+      failureThreshold: 3
       initialDelaySeconds: 60
       periodSeconds: 10
       successThreshold: 1
@@ -187,11 +115,11 @@ upstream:
         {{- include "common.tplvalues.render" ( dict "value"
         .Values.global.dynamic "context" $) | sha256sum }}
     readinessProbe:
-      failureThreshold: 3
       httpGet:
         path: /healthcheck
         port: 7007
         scheme: HTTP
+      failureThreshold: 3
       initialDelaySeconds: 30
       periodSeconds: 10
       successThreshold: 2
@@ -234,8 +162,6 @@ upstream:
       containerSecurityContext:
         enabled: false
       extraEnvVars:
-        - name: NODE_TLS_REJECT_UNAUTHORIZED
-          value: '0'
         - name: POSTGRESQL_ADMIN_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -250,9 +176,9 @@ upstream:
   service:
     externalTrafficPolicy: Cluster
     ports:
-      backend: 4180
+      backend: 7007
       name: http-backend
-      targetPort: oauth2-proxy
+      targetPort: backend
     sessionAffinity: None
     type: ClusterIP
   serviceAccount:
