@@ -19,8 +19,9 @@ Install the RHSSO operator on Openshift Once the Operator is installed create a 
    oc apply -f ./KeyCloak/KeyCloakRealm.yaml
 ```
 
-Once the realm gets created please get the redirect URI, This needs to be used while configuring Okta app integration.
-![Alt text](./docs/assets/KeyCloakClient.png "OIDC App")
+Once the realm gets created Create an Identity Provider of Type OIDC and also get the redirect URI, This needs to be used while configuring Okta app integration.
+
+![Alt text](./docs/assets/KeyclockIdentityProvider.png "OIDC App")
 
 Create KeyCloak Client
 
