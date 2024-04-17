@@ -4,7 +4,31 @@ Backstage provides an authentication provider (https://backstage.io/docs/auth/bi
 
 The workaround is to use Oauth2Proxy -> KeyCloak to federate this as OIDC provider with identity provider as Okta. The Oauth2-proxy will be added as an additional container running along devhub container in devhub pod. This proxy uses keycloak to federate the authentication and keycloak uses Okta as the identity provider. The Keycloak plugin is also used in this architecture to sync up all the users in Okta to RHDH.
 
-![Alt text](./docs/assets/bitbucket-rhdh.png?raw=true "Logical Architecture")
+
+## KeyCloak
+
+Install the RHSSO operator on Openshift Once the Operator is installed create a key cloak instance, realm , client
+
+```
+  oc apply -f ./KeyCloak/KeyCloak.yaml
+```
+
+### KeyCloak Realm/client config
+
+```
+   oc apply -f ./KeyCloak/KeyCloakRealm.yaml
+```
+
+Once the realm gets created please get the redirect URI, This needs to be used while configuring Okta app integration.
+![Alt text](./docs/assets/KeyCloakClient.png "OIDC App")
+
+Create KeyCloak Client
+
+Replace the `<<Developer-HUB-Route>>` in KeyCloakClient.yaml file before executing this.
+
+```
+   oc apply -f ./KeyCloak/KeyCloakClient.yaml
+```
 
 ## Okta settings
 
@@ -20,30 +44,6 @@ Setup App Integration Consumer for Key Cloak It needs some prior info from KeyCl
 ![Alt text](./docs/assets/KeycloakIntegration.png "OIDC Detail")
 ![Alt text](./docs/assets/OktaRedirectUri.png "OIDC Detail")
 
-
-## KeyCloak
-
-Install the RHSSO operator on Openshift Once the Operator is installed create a key cloak instance, realm , client
-
-```
-  oc apply -f ./KeyCloak/KeyCloak.yaml
-```
-
-### KeyCloak Realm/client config
-
-Replace the clientid and client secret in the file `KeyCloakRealm.yaml` before creating the realm
-
-```
-   oc apply -f ./KeyCloak/KeyCloakRealm.yaml
-```
-
-Create KeyCloak Client
-
-Replace the `<<Developer-HUB-Route>>` in KeyCloakClient.yaml file before executing this.
-
-```
-   oc apply -f ./KeyCloak/KeyCloakClient.yaml
-```
 
 ### Some Keycloak Screen shots to verify config.
 

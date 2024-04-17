@@ -15,20 +15,6 @@ spec:
     displayName: Okta Authentication Realm
     enabled: true
     id: rhdh
-    identityProviders:
-      - enabled: true
-        config:
-          clientId: <<CLIENT ID FROM BITBUCKET OAUTH CONSUMER>>
-          clientSecret: <<CLIENT SECRET FROM BITBUCKET OAUTH CONSUMER>>
-          syncMode: IMPORT
-          useJwksUrl: 'true'
-        firstBrokerLoginFlowAlias: first broker login
-        trustEmail: false
-        linkOnly: false
-        providerId: bitbucket
-        alias: bitbucket
-        addReadTokenRoleOnCreate: false
-        storeToken: false
     realm: backstage
 status:
   loginURL: ''
