@@ -10,15 +10,15 @@ The workaround is to use Oauth2Proxy -> KeyCloak to federate this as OIDC provid
 
 Setup App Integration Consumer for Key Cloak It needs some prior info from KeyCloak. 
 
-# Create New App Integration select Sign in method : OID , type as "Single Page App" 
+# Create New App Integration select Sign in method : OIDC , type as "Single Page App" 
 ![Alt text](./docs/assets/CreateNewAppIntegration.png "OIDC App")
 
 # Setup redirect URI from KeyCloak
 
-1) Callback URL : <<KeyCloak_Route_URL>>/auth/realms/< realmname >/broker/bitbucket/endpoint
-2) Under Permissions enable Account Email,Read checkbox.
+1) Signon Redirect URL : <<KeyCloak_Route_URL>>/auth/realms/< realmname >/broker/bitbucket/endpoint
 
 ![Alt text](./docs/assets/KeycloakIntegration.png "OIDC Detail")
+![Alt text](./docs/assets/OktaRedirectUri.png "OIDC Detail")
 
 
 ## KeyCloak
