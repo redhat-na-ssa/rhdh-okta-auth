@@ -44,7 +44,16 @@ Setup App Integration Consumer for Key Cloak It needs some prior info from KeyCl
 
 ## Update Identity Provider OIDC config info. 
 
-  We need to update Authorization URL,Token URL,Logout URL
+  We need to update :
+
+    Authorization URL 
+    Token URL
+    Logout URL
+    Client Id
+    Client Secret
+    Default Scope set to "openid profile email"
+
+    We can get ClientId,ClientSecret from Okta App Integration.
   
   >[!NOTE]
   > To get the values for this we need to access this URL from Okta : https://<<< "Okta account URL" >>>/oauth2/default/.well-known/openid-configuration?client_id=<Application Client ID>
