@@ -23,13 +23,6 @@ Once the realm gets created Create an Identity Provider of Type OIDC and also ge
 
 ![Alt text](./docs/assets/KeyclockIdentityProvider.png "OIDC App")
 
-Create KeyCloak Client
-
-Replace the `<<Developer-HUB-Route>>` in KeyCloakClient.yaml file before executing this.
-
-```
-   oc apply -f ./KeyCloak/KeyCloakClient.yaml
-```
 
 ## Okta settings
 
@@ -45,6 +38,17 @@ Setup App Integration Consumer for Key Cloak It needs some prior info from KeyCl
 ![Alt text](./docs/assets/KeycloakIntegration.png "OIDC Detail")
 ![Alt text](./docs/assets/OktaRedirectUri.png "OIDC Detail")
 
+
+
+# Resume KeyCloak Settings
+
+## Create KeyCloak Client
+
+Replace the `<<Developer-HUB-Route>>` in KeyCloakClient.yaml file before executing this.
+
+```
+   oc apply -f ./KeyCloak/KeyCloakClient.yaml
+```
 
 ### Some Keycloak Screen shots to verify config.
 
