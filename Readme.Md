@@ -8,17 +8,17 @@ The workaround is to use Oauth2Proxy -> KeyCloak to federate this as OIDC provid
 
 ## Okta settings
 
-Setup App Integration Consumer for Key Cloak. 
+Setup App Integration Consumer for Key Cloak It needs some prior info from KeyCloak. 
 
-# Create New App Integration select type as "OIDC" 
-![Alt text](./docs/assets/CreateNewAppIntegration.png "OAuth Consumer")
+# Create New App Integration select Sign in method : OID , type as "Single Page App" 
+![Alt text](./docs/assets/CreateNewAppIntegration.png "OIDC App")
 
-Create an Oauth Consumer set the following
+# Setup redirect URI from KeyCloak
 
 1) Callback URL : <<KeyCloak_Route_URL>>/auth/realms/< realmname >/broker/bitbucket/endpoint
 2) Under Permissions enable Account Email,Read checkbox.
 
-![Alt text](./docs/assets/bitbucket-consumer-details.png "OAuth Consumer Detail")
+![Alt text](./docs/assets/KeycloakIntegration.png "OIDC Detail")
 
 
 ## KeyCloak
